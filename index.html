@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        box-sizing: border-box;  
+       }
+       body{
+background: #833AB4;
+background: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+        height: 100vh;
+          display: flex;
+        justify-content: center;
+        /* flex-direction: column; */
+        align-items: center;
+
+       }
+       .container{
+        border: 2px dotted brown;
+        padding: 32px;
+        align-items: center;
+        text-align: center;
+      
+       }
+       button{
+        margin-top: 5px;
+        padding-block: 4px;
+        padding-inline: 18px;
+        color: rgb(48, 224, 48);
+        font-weight: 500;
+        background-color: rgb(78, 232, 152);
+        border: none;
+       }
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>  “You have to laugh at our jokes.” 😄
+</h1>
+        <section class="api_body"></section>
+
+         <button id="get_jokes">🤡</button>
+    </div>
+    <script>
+        const apibody=document.querySelector(".api_body");
+        const apiurl="https://icanhazdadjoke.com/";
+
+let getdata=()=>{
+    let fatch= fetch(apiurl,{headers:{Accept:'application/json',},
+})
+    .then((res)=>{
+        console.log(res);
+        
+        return res.json();
+     }).then((data)=>{
+        console.log(data.joke);
+        apibody.innerHTML=data.joke;
+        
+
+     })
+     .catch((error)=>{
+            console.log(error);     
+        });
+        
+
+}
+getdata();
+        document.getElementById("get_jokes").addEventListener('click',getdata);
+    </script>
+</body>
+</html>
